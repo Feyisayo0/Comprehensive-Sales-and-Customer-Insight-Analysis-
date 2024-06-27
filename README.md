@@ -14,16 +14,14 @@ A comprehensive sales and customer insight analysis which will be helpful for op
 - [References](#references)
  
 ### Project Overview
-The project entailed analyzing a Shopify store's sales data to filter out fraudulent transactions, identify the prime customer demographics, and track sales trends. Aimed at enhancing marketing efforts and operational strategy, this deep-dive into customer and sales data provides a robust foundation for informed decision-making.
+This project involves analyzing sales data from an e-commerce store that specializes in selling designer sneakers. The objective is to clean the data, identify and exclude fraudulent transactions, categorize orders based on size, analyze customer demographics, and calculate week-over-week growth in order values. The insights gained from this analysis will guide business decisions, improve marketing strategies, and enhance overall sales performance.
 
 ### Data Source
-The primary data sources included two CSV files: 
-'Orders', containing transaction details such as order ID, user ID, and order amount
-'Customers', housing customer-specific information like IDs and demographics.
+The dataset includes two CSV files: Orders and Customers. The Orders file contains information about individual orders, including order amount, total items, payment method, and order date. The Customers file contains demographic information about customers, including user ID, age group, and state.
 
 ### Tools
-- csvfiddle.io: Used for initial data upload and SQL query testing.
-- SQL: Employed for all data manipulation tasks including filtering, aggregation, and analysis.
+- csvfiddle.io: For importing and querying CSV data.
+- SQL: For data cleaning, transformation, and analysis.
 
 ### Data Cleaning and Preparation
 For the data preparation phase, it involved the following steps;
@@ -31,10 +29,20 @@ For the data preparation phase, it involved the following steps;
 - handling missing values (involved removing duplicate entries from the 'Customers' table)
 - handling outliers(filtering out fraudulent transactions identified by extreme order values)
   ``` sql
-  DELETE FROM orders
-  WHERE order_amount = 704000;
+  WITH cleanedorders AS (
+    SELECT 
+        order_id,
+        user_id,
+        order_amount,
+        total_items,
+        payment_method,
+        created_at
+    FROM 
+        orders
+    WHERE 
+        order_amount < 700000 -- Excluding the fraudulent order amount of 704000
   ```
-- data validation (data types were validated and converted to ensure consistency across the dataset.
+- data validation (data types were validated and converted to ensure consistency across the dataset).
 
 ### Exploratory Data Analysis
 The Exploratory Data Analysis phase involves exploring the datasets used to answer key questions, such as:
@@ -44,26 +52,27 @@ The Exploratory Data Analysis phase involves exploring the datasets used to answ
 - Who are our top 10 customers in terms of total spending, and what are their demographic profiles including age group and location?
 
 ### Data Analysis 
-The data analysis phase leveraged SQL to:
-- Compute the AOV, revealing an initial overestimation due to outliers.
-- Employ CTEs to efficiently segment order sizes, refining the focus on the most frequent categories.
-- Merge sales with customer demographics, unraveling the profile of top spenders.
+- The frequency and percentage of each order size category were calculated to understand the distribution of order sizes.
+- The distribution of customers by state and the identification of the state with the majority of customers were analyzed.
+- The top 10 customers based on total spend were identified, and their demographic information was analyzed to determine their common locations and age groups.
+- The growth in total order values from one week to the next was calculated to identify trends in sales performance.
 
 ### Recommendations
-The Analysis results are summarized as follows;
-The analysis results are summarized as follows:
-- The corrected AOV stood at $754.09, a more accurate reflection of customer spending.
-- Small orders (1-2 items) emerged as the majority, suggesting a customer preference for selective, potentially high-value items.
-- California surfaced as a key customer hub, indicating a strong market presence that could be further cultivated.
+- Target Marketing: Focus marketing efforts on California (CA) and customers in the 40-50 age group, as they represent the majority of top customers.
+- Inventory Management: Maintain a balanced inventory with a higher emphasis on items that are commonly part of small orders (1-2 items).
+- Fraud Detection: Implement stricter validation checks to prevent and identify fraudulent transactions early.
 
 ### Results
-Based on the analysis, the following  actions are recommended:
-- Focus on the younger demographic of 20-29-year-olds, as suggested by their higher AOV and order frequency.
-- Explore cross-selling and upselling strategies to increase the average size of orders.
-- Capitalize on the customer density in California with region-specific promotions.
+- Correct AOV: After excluding fraudulent transactions, the correct Average Order Value (AOV) was calculated to be $754.09.
+- Order Size Distribution: Small orders (1-2 items) were the most frequent, accounting for 73.49% of all orders.
+- Customer Demographics: California (CA) had the highest number of customers, with 159 customers, predominantly in the 40-50 age group.
+- Top Customers: The majority of the top 10 customers based on total spend were located in California and belonged to the 40-50 age group.
+- Week-over-Week Growth: Detailed weekly sales performance and growth trends were identified, allowing for better sales tracking and forecasting.
 
 ### Limitations
-The analysis was limited by the data provided and may not account for all factors influencing sales trends, such as seasonal variability or broader economic conditions. The data cleaning process assumed that extreme values were anomalies without further contextual data, which could potentially exclude valid high-value transactions.
+- Data Quality: The presence of fraudulent transactions and data entry errors (e.g., order amount of $704,000 instead of $704) impacted initial analysis results.
+- Data Completeness: The analysis is limited to the available data and may not account for other influential factors such as seasonal trends or promotions.
+- Platform Constraints: The analysis was conducted using csvfiddle.io, which may have limitations in supporting certain SQL functions and complex queries.
 
 ### References
 Smart SQL
