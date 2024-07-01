@@ -29,7 +29,6 @@ For the data preparation phase, it involved the following steps;
 - handling missing values (involved removing duplicate entries from the 'Customers' table)
 - handling outliers(filtering out fraudulent transactions identified by extreme order values)
   ``` sql
-  WITH cleanedorders AS (
     SELECT 
         order_id,
         user_id,
@@ -46,7 +45,7 @@ For the data preparation phase, it involved the following steps;
 
 ### Exploratory Data Analysis
 The Exploratory Data Analysis phase involves exploring the datasets used to answer key questions, such as:
-- What is the true Average Order Value (AOV) on the platform after excluding outliers and potential fraudulent transactions?
+- What is the Average Order Value (AOV) on the platform after excluding outliers and fraudulent transactions?
 - Which order size category is most prevalent among customers, and how does it compare to other order size frequencies?
 - Which geographic location houses the majority of our customer base, and what are the characteristics of this demographic?
 - Who are our top 10 customers in terms of total spending, and what are their demographic profiles including age group and location?
@@ -56,7 +55,6 @@ The Exploratory Data Analysis phase involves exploring the datasets used to answ
 - The distribution of customers by state and the identification of the state with the majority of customers were analyzed.
 - The top 10 customers based on total spend were identified, and their demographic information was analyzed to determine their common locations and age groups.
 - The growth in total order values from one week to the next was calculated to identify trends in sales performance.
-![Week-Over-Week Table](![Week-Over-Week Table](https://github.com/Feyisayo0g/Comprehensive-Sales-and-Customer-Insight-Analysis-/blob/main/week-over-week.png)
 
 ### Recommendations
 - Target Marketing: Focus marketing efforts on California (CA) and customers in the 40-50 age group, as they represent the majority of top customers.
@@ -68,12 +66,9 @@ The Exploratory Data Analysis phase involves exploring the datasets used to answ
 - Order Size Distribution: Small orders (1-2 items) were the most frequent, accounting for 73.49% of all orders.
 - Customer Demographics: California (CA) had the highest number of customers, with 159 customers, predominantly in the 40-50 age group.
 - Top Customers: The majority of the top 10 customers based on total spend were located in California and belonged to the 40-50 age group.
-- Week-over-Week Growth: Detailed weekly sales performance and growth trends were identified, allowing for better sales tracking and forecasting.
+- Week-over-Week Growth: Detailed weekly sales performance and growth trends were identified, allowing for better sales tracking and forecasting going forward.
+![Week-Over-Week Table](![Week-Over-Week Table](https://github.com/Feyisayo0g/Comprehensive-Sales-and-Customer-Insight-Analysis-/blob/main/week-over-week.png)
 
 ### Limitations
-- Data Quality: The presence of fraudulent transactions and data entry errors (e.g., order amount of $704,000 instead of $704) impacted initial analysis results.
+- Data Quality: The presence of fraudulent transactions and data entry errors (e.g., order amount of $704,000 instead of $704) impacted initial analysis results and required data cleansing. 
 - Data Completeness: The analysis is limited to the available data and may not account for other influential factors such as seasonal trends or promotions.
-- Platform Constraints: The analysis was conducted using csvfiddle.io, which may have limitations in supporting certain SQL functions and complex queries.
-
-### References
-Smart SQL
