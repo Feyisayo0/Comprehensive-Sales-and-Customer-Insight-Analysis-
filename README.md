@@ -56,6 +56,7 @@ The Exploratory Data Analysis phase involves exploring the datasets used to answ
 - The distribution of customers by state and the identification of the state with the majority of customers were analyzed.
 - The top 10 customers based on total spend were identified, and their demographic information was analyzed to determine their common locations and age groups.
 - The growth in total order values from one week to the next was calculated to identify trends in sales performance.
+![Week-Over-Week Table](![Week-Over-Week Table](https://github.com/Feyisayo0g/Comprehensive-Sales-and-Customer-Insight-Analysis-/blob/main/week-over-week.png)
 
 ### Recommendations
 - Target Marketing: Focus marketing efforts on California (CA) and customers in the 40-50 age group, as they represent the majority of top customers.
